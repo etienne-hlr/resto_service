@@ -11,7 +11,7 @@ function NavBarHeader() {
           <Navbar.Brand href="#home">Dashboard</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#carte">Carte</Nav.Link>
+            <Nav.Link href="#carte">Modifier la carte</Nav.Link>
             <Nav.Link href="#commandes">Commandes</Nav.Link>
           </Nav>
         </Container>
