@@ -11,6 +11,7 @@ function Home() {
           <CardItemCarte
             image="https://www.socialkitchen.fr/photos/logo-thefork.jpg"
             title="Titre de la boisson"
+            data="data"
           />
         </Col>
       ))}
