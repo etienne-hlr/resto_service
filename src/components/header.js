@@ -1,21 +1,30 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import { LinkContainer } from "react-router-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
+import { Outlet, Link } from "react-router-dom";
 
 function NavBarHeader() {
   return (
     <>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Dashboard</Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand>Dashboard</Navbar.Brand>
+          </LinkContainer>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#carte">Modifier la carte</Nav.Link>
-            <Nav.Link href="#commandes">Commandes</Nav.Link>
+            <LinkContainer to="/home">
+              <Nav.Link>La carte</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/commandes">
+              <Nav.Link>Commandes</Nav.Link>
+            </LinkContainer>
           </Nav>
         </Container>
       </Navbar>
+
+      <Outlet />
     </>
   );
 }
