@@ -14,7 +14,7 @@ function App() {
           <Route
             path="/commandes"
             element={
-              <CommandList items={["coca", "ice tea", "dorelei", "spritz"]} />
+              <CommandList list={["coca", "ice tea", "dorelei", "spritz"]} />
             }
           />
           {/* <CommandList items={["coca", "ice tea", "dorelei", "spritz"]} /> */}
