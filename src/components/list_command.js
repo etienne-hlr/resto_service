@@ -20,7 +20,6 @@ const CommandList = ({ list }) => {
             >
               <p>{item}</p>
               <Button
-                buttonIndex={index}
                 onClick={() => deleteAnOrder(index)}
                 variant="outline-danger"
               >

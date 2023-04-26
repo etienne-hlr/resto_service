@@ -17,7 +17,6 @@ function App() {
               <CommandList list={["coca", "ice tea", "dorelei", "spritz"]} />
             }
           />
-          {/* <CommandList items={["coca", "ice tea", "dorelei", "spritz"]} /> */}
         </Route>
       </Routes>
     </BrowserRouter>
