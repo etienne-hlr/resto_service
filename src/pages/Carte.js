@@ -3,7 +3,7 @@ import CardItemCarte from "../components/card_item_carte";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-function Home() {
+function Carte() {
   return (
     <Row xs={1} sm={2} md={4} className="g-3 p-3">
       {Array.from({ length: 8 }).map((_, index) => (
@@ -20,4 +20,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Carte;
