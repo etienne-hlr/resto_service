@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-function CardItemCarte({ image, title, buttonType }) {
+function CardItemCarte({ image, title, buttonType, buttonClickEvent }) {
   return (
     <Card>
       <Card.Img variant="top" src={image} />
@@ -11,7 +11,9 @@ function CardItemCarte({ image, title, buttonType }) {
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text> */}
-        <Button variant="primary">{buttonType}</Button>
+        <Button onClick={buttonClickEvent} variant="primary">
+          {buttonType}
+        </Button>
       </Card.Body>
     </Card>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CardItemCarte from "../components/card_item_carte";
 
-function ModalCardModification() {
+function ModalCardModification({ buttonClickEvent }) {
   return (
     <>
       <CardItemCarte
@@ -9,6 +9,7 @@ function ModalCardModification() {
         title="Titre de la boisson"
         data="data"
         buttonType="Enregistrer"
+        buttonClickEvent={buttonClickEvent}
       />
     </>
   );

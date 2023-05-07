@@ -5,24 +5,36 @@ import ModalCardModification from "./ModalCardModification";
 
 function Carte() {
   const [listTitle, setListTitle] = useState(["", "", "", "", "", "", "", ""]);
+  const [display, setDisplay] = useState("d-none");
+  const [opacity, setOpacity] = useState("opacity-100");
+  //() => setListTitle([...listTitle, []])
+
+  const cardFormAppearance = () => {
+    setOpacity("opacity-25");
+    setDisplay("d-block");
+  };
+
+  const newItemCreation = () => {
+    setOpacity("opacity-100");
+    setDisplay("d-none");
+    setListTitle([...listTitle, []]);
+  };
 
   return (
     <div className="position-relative">
       <div
-        className="position-absolute top-50 start-50 translate-middle "
+        className={`position-absolute top-50 start-50 translate-middle ${display}`}
         style={{ zIndex: 3 }}
       >
-        <ModalCardModification />
+        <ModalCardModification buttonClickEvent={newItemCreation} />
       </div>
-      <div style={{ opacity: 0.33 }}>
+      <div className={`${opacity}`}>
         <InputGroup>
           {/* <InputGroup.Text> */}
           <FormControl type="search" placeholder="Rechercher" />
           {/* </InputGroup.Text> */}
         </InputGroup>
-        <Button onClick={() => setListTitle([...listTitle, []])}>
-          Ajouter
-        </Button>
+        <Button onClick={cardFormAppearance}>Ajouter</Button>
         <Row xs={1} sm={2} md={4} className="g-3 p-3">
           {Array.from(listTitle).map((value, index) => (
             <Col key={index}>
