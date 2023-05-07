@@ -4,21 +4,56 @@ import { InputGroup, Row, Col, FormControl, Button } from "react-bootstrap";
 import ModalCardModification from "./ModalCardModification";
 
 function Carte() {
-  const [listTitle, setListTitle] = useState(["", "", "", "", "", "", "", ""]);
+  const [listTitle, setListTitle] = useState([
+    {
+      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
+      title: "Titre de la boisson",
+    },
+    {
+      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
+      title: "Titre de la boisson",
+    },
+    {
+      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
+      title: "Titre de la boisson",
+    },
+    {
+      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
+      title: "Titre de la boisson",
+    },
+    {
+      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
+      title: "Titre de la boisson",
+    },
+    {
+      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
+      title: "Titre de la boisson",
+    },
+    {
+      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
+      title: "Titre de la boisson",
+    },
+    {
+      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
+      title: "Titre de la boisson",
+    },
+  ]);
   const [display, setDisplay] = useState("d-none");
   const [opacity, setOpacity] = useState("opacity-100");
-  //() => setListTitle([...listTitle, []])
 
   const cardFormAppearance = () => {
     setOpacity("opacity-25");
     setDisplay("d-block");
   };
 
-  const newItemCreation = () => {
+  const newItemCreation = (image, title) => {
     setOpacity("opacity-100");
     setDisplay("d-none");
-    setListTitle([...listTitle, []]);
+    setListTitle([...listTitle, { image: image, title: title }]);
   };
+
+  let inputImage = "https://www.socialkitchen.fr/photos/logo-thefork.jpg";
+  let inputTitle = "Titre de la boisson";
 
   return (
     <div className="position-relative">
@@ -26,7 +61,11 @@ function Carte() {
         className={`position-absolute top-50 start-50 translate-middle ${display}`}
         style={{ zIndex: 3 }}
       >
-        <ModalCardModification buttonClickEvent={newItemCreation} />
+        <ModalCardModification
+          buttonClickEvent={() => newItemCreation(inputImage, inputTitle)}
+          image={inputImage}
+          title={inputTitle}
+        />
       </div>
       <div className={`${opacity}`}>
         <InputGroup>
@@ -40,12 +79,12 @@ function Carte() {
             <Col key={index}>
               <CardItemCarte
                 key={index}
-                image="https://www.socialkitchen.fr/photos/logo-thefork.jpg"
-                title="Titre de la boisson"
+                image={value.image}
+                title={value.title}
                 data="data"
                 buttonType="Modifier"
               />
-              {console.log(value)}
+              {console.log(listTitle)}
             </Col>
           ))}
         </Row>

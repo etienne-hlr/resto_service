@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import CardItemCarte from "../components/card_item_carte";
 
-function ModalCardModification({ buttonClickEvent }) {
+function ModalCardModification({ buttonClickEvent, image, title }) {
   return (
     <>
       <CardItemCarte
-        image="https://www.socialkitchen.fr/photos/logo-thefork.jpg"
-        title="Titre de la boisson"
+        image={image}
+        title={title}
         data="data"
         buttonType="Enregistrer"
         buttonClickEvent={buttonClickEvent}
