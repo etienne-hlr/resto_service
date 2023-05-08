@@ -1,21 +1,36 @@
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import { Card, Button, Form, Image } from "react-bootstrap";
 
-function CardItemCarte({ image, title, buttonType, buttonClickEvent }) {
-  return (
+function CardItemCarte({
+  image,
+  title,
+  buttonType,
+  buttonClickEvent,
+  buttonChangeEvent,
+  cardType,
+}) {
+  return cardType === "card" ? (
     <Card>
       <Card.Img variant="top" src={image} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
-        {/* <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text> */}
+
         <Button onClick={buttonClickEvent} variant="primary">
           {buttonType}
         </Button>
       </Card.Body>
     </Card>
+  ) : (
+    <Form>
+      <Image src={image}></Image>
+      <Form.Control
+        type="text"
+        placeholder="Titre de la boisson"
+        onChange={(e) => buttonChangeEvent(e.target.value)}
+      />
+      <Button onClick={buttonClickEvent} variant="primary">
+        {buttonType}
+      </Button>
+    </Form>
   );
 }
 

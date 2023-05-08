@@ -40,6 +40,7 @@ function Carte() {
   ]);
   const [display, setDisplay] = useState("d-none");
   const [opacity, setOpacity] = useState("opacity-100");
+  const [title, setTitle] = useState("Titre de la boisson");
 
   const cardFormAppearance = () => {
     setOpacity("opacity-25");
@@ -52,6 +53,10 @@ function Carte() {
     setListTitle([...listTitle, { image: image, title: title }]);
   };
 
+  const changeTitle = (input) => {
+    setTitle(input);
+  };
+
   let inputImage = "https://www.socialkitchen.fr/photos/logo-thefork.jpg";
   let inputTitle = "Titre de la boisson";
 
@@ -62,7 +67,8 @@ function Carte() {
         style={{ zIndex: 3 }}
       >
         <ModalCardModification
-          buttonClickEvent={() => newItemCreation(inputImage, inputTitle)}
+          buttonChangeEvent={changeTitle}
+          buttonClickEvent={() => newItemCreation(inputImage, title)}
           image={inputImage}
           title={inputTitle}
         />
@@ -83,6 +89,7 @@ function Carte() {
                 title={value.title}
                 data="data"
                 buttonType="Modifier"
+                cardType="card"
               />
               {console.log(listTitle)}
             </Col>
