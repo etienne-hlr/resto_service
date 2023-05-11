@@ -1,4 +1,5 @@
 import { Card, Button, Form, Image, CloseButton } from "react-bootstrap";
+//need to check sizes of image
 
 function CardItemCarte({
   image,
@@ -15,6 +16,7 @@ function CardItemCarte({
         onClick={crossClickEvent}
         className="position-absolute top-0 end-0 m-2"
       />
+
       <Card.Img src={image} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
