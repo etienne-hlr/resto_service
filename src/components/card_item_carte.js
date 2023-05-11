@@ -1,4 +1,4 @@
-import { Card, Button, Form, Image } from "react-bootstrap";
+import { Card, Button, Form, Image, CloseButton } from "react-bootstrap";
 
 function CardItemCarte({
   image,
@@ -7,10 +7,15 @@ function CardItemCarte({
   buttonClickEvent,
   buttonChangeEvent,
   cardType,
+  crossClickEvent,
 }) {
   return cardType === "card" ? (
-    <Card>
-      <Card.Img variant="top" src={image} />
+    <Card className="position-relative ">
+      <CloseButton
+        onClick={crossClickEvent}
+        className="position-absolute top-0 end-0 m-2"
+      />
+      <Card.Img src={image} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
 
@@ -20,11 +25,15 @@ function CardItemCarte({
       </Card.Body>
     </Card>
   ) : (
-    <Form>
+    <Form className="position-relative">
+      <CloseButton
+        onClick={crossClickEvent}
+        className="position-absolute top-0 end-0 m-2"
+      />
       <Image src={image}></Image>
       <Form.Control
         type="text"
-        placeholder="Titre de la boisson"
+        placeholder={title}
         onChange={(e) => buttonChangeEvent(e.target.value)}
       />
       <Button onClick={buttonClickEvent} variant="primary">

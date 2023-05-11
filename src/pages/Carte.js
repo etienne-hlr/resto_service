@@ -5,36 +5,44 @@ import { InputGroup, Row, Col, FormControl, Button } from "react-bootstrap";
 function Carte() {
   const [listTitle, setListTitle] = useState([
     {
-      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
-      title: "Titre de la boisson",
+      image:
+        "https://www.il-posto-restaurant.fr/wp-content/uploads/2017/09/p_1_2_9_129-thickbox_default-Maxi-Coca-15l.jpg",
+      title: "Coca",
     },
     {
-      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
-      title: "Titre de la boisson",
+      image:
+        "https://cdn.monoprix.fr/cdn-cgi/image/width=580,quality=80,format=auto,metadata=none/assets/images/grocery/1032781/580x580.jpg",
+      title: "Ice tea",
     },
     {
-      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
-      title: "Titre de la boisson",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1024px-A_small_cup_of_coffee.JPG",
+      title: "Café",
     },
     {
-      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
-      title: "Titre de la boisson",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Beer_mug_transparent.png/220px-Beer_mug_transparent.png",
+      title: "Bière",
     },
     {
-      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
-      title: "Titre de la boisson",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Apple_juice_with_3apples-JD.jpg/1024px-Apple_juice_with_3apples-JD.jpg",
+      title: "Jus de pomme",
     },
     {
-      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
-      title: "Titre de la boisson",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Brick_tea_4897.jpg/1024px-Brick_tea_4897.jpg",
+      title: "Thé",
     },
     {
-      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
-      title: "Titre de la boisson",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/8/88/Glass_of_Red_Wine_with_a_bottle_of_Red_Wine_-_Evan_Swigart.jpg",
+      title: "Vin",
     },
     {
-      image: "https://www.socialkitchen.fr/photos/logo-thefork.jpg",
-      title: "Titre de la boisson",
+      image:
+        "https://www.lesrhumsdumonde.com/675-large_default/rhum-don-papa-baroko.jpg",
+      title: "Rhum",
     },
   ]);
   const [display, setDisplay] = useState("d-none");
@@ -56,8 +64,17 @@ function Carte() {
     setTitle(input);
   };
 
+  const closeForm = () => {
+    setOpacity("opacity-100");
+    setDisplay("d-none");
+  };
+
+  const deleteAnItem = (index) => {
+    listTitle.splice(index, 1);
+    setListTitle([...listTitle]);
+  };
+
   let inputImage = "https://www.socialkitchen.fr/photos/logo-thefork.jpg";
-  let inputTitle = "Titre de la boisson";
 
   return (
     <div className="position-relative">
@@ -67,12 +84,13 @@ function Carte() {
       >
         <CardItemCarte
           image={inputImage}
-          title={inputTitle}
+          title={title}
           data="data"
           buttonType="Enregistrer"
           buttonClickEvent={() => newItemCreation(inputImage, title)}
           buttonChangeEvent={changeTitle}
           cardType="form"
+          crossClickEvent={closeForm}
         />
       </div>
       <div className={`${opacity}`}>
@@ -101,8 +119,10 @@ function Carte() {
                 buttonClickEvent={() => {
                   cardFormAppearance();
                 }}
+                crossClickEvent={() => {
+                  deleteAnItem(index);
+                }}
               />
-              {console.log(listTitle.length, index)}
             </Col>
           ))}
         </Row>
