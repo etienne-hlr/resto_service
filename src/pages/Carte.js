@@ -48,8 +48,24 @@ function Carte() {
   const [display, setDisplay] = useState("d-none");
   const [opacity, setOpacity] = useState("opacity-100");
   const [title, setTitle] = useState("Titre de la boisson");
+  const [imgUrl, setImgUrl] = useState(
+    "https://www.socialkitchen.fr/photos/logo-thefork.jpg"
+  );
+
+  const [indexSelection, setIndexSelection] = useState(-1);
 
   const cardFormAppearance = () => {
+    setIndexSelection(-1);
+    console.log(indexSelection);
+
+    setOpacity("opacity-25");
+    setDisplay("d-block");
+  };
+
+  const modifyAnItem = (index) => {
+    setIndexSelection(index);
+    setImgUrl(listTitle[index]["image"]);
+    setTitle(listTitle[index]["title"]);
     setOpacity("opacity-25");
     setDisplay("d-block");
   };
@@ -57,7 +73,11 @@ function Carte() {
   const newItemCreation = (image, title) => {
     setOpacity("opacity-100");
     setDisplay("d-none");
-    setListTitle([...listTitle, { image: image, title: title }]);
+    if (indexSelection < 0) {
+      console.log(indexSelection);
+    } else {
+    }
+    setIndexSelection(-1);
   };
 
   const changeTitle = (input) => {
@@ -74,8 +94,6 @@ function Carte() {
     setListTitle([...listTitle]);
   };
 
-  let inputImage = "https://www.socialkitchen.fr/photos/logo-thefork.jpg";
-
   return (
     <div className="position-relative">
       <div
@@ -83,11 +101,11 @@ function Carte() {
         style={{ zIndex: 3 }}
       >
         <CardItemCarte
-          image={inputImage}
+          image={imgUrl}
           title={title}
           data="data"
           buttonType="Enregistrer"
-          buttonClickEvent={() => newItemCreation(inputImage, title)}
+          buttonClickEvent={() => newItemCreation(imgUrl, title)}
           buttonChangeEvent={changeTitle}
           cardType="form"
           crossClickEvent={closeForm}
@@ -95,9 +113,9 @@ function Carte() {
       </div>
       <div className={`${opacity}`}>
         <InputGroup>
-          {/* <InputGroup.Text> */}
-          <FormControl type="search" placeholder="Rechercher" />
-          {/* </InputGroup.Text> */}
+          <InputGroup.Text>
+            <FormControl type="search" placeholder="Rechercher" />
+          </InputGroup.Text>
         </InputGroup>
         <Button
           onClick={() => {
@@ -116,9 +134,7 @@ function Carte() {
                 data="data"
                 buttonType="Modifier"
                 cardType="card"
-                buttonClickEvent={() => {
-                  cardFormAppearance();
-                }}
+                buttonClickEvent={() => modifyAnItem(index)}
                 crossClickEvent={() => {
                   deleteAnItem(index);
                 }}

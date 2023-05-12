@@ -1,4 +1,4 @@
-import { Card, Button, Form, Image, CloseButton } from "react-bootstrap";
+import { Card, Button, Form, CloseButton } from "react-bootstrap";
 //need to check sizes of image
 
 function CardItemCarte({
@@ -9,6 +9,7 @@ function CardItemCarte({
   buttonChangeEvent,
   cardType,
   crossClickEvent,
+  index,
 }) {
   return cardType === "card" ? (
     <Card className="position-relative ">
@@ -16,8 +17,11 @@ function CardItemCarte({
         onClick={crossClickEvent}
         className="position-absolute top-0 end-0 m-2"
       />
-
-      <Card.Img src={image} />
+      <Card.Img
+        style={{ width: "100%", height: "40vh", objectFit: "cover" }}
+        variant="top"
+        src={image}
+      />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
 
@@ -27,21 +31,31 @@ function CardItemCarte({
       </Card.Body>
     </Card>
   ) : (
-    <Form className="position-relative">
-      <CloseButton
-        onClick={crossClickEvent}
-        className="position-absolute top-0 end-0 m-2"
-      />
-      <Image src={image}></Image>
-      <Form.Control
-        type="text"
-        placeholder={title}
-        onChange={(e) => buttonChangeEvent(e.target.value)}
-      />
-      <Button onClick={buttonClickEvent} variant="primary">
-        {buttonType}
-      </Button>
-    </Form>
+    <Card>
+      <Form className="position-relative">
+        <CloseButton
+          onClick={crossClickEvent}
+          className="position-absolute top-0 end-0 m-2"
+        />
+
+        <Card.Img
+          style={{ width: "100%", height: "40vh", objectFit: "cover" }}
+          variant="top"
+          src={image}
+        />
+        <Card.Body>
+          <Form.Control
+            className="m-1"
+            type="text"
+            placeholder={title}
+            onChange={(e) => buttonChangeEvent(e.target.value)}
+          />
+          <Button className="m-1" onClick={buttonClickEvent} variant="primary">
+            {buttonType}
+          </Button>
+        </Card.Body>
+      </Form>
+    </Card>
   );
 }
 
