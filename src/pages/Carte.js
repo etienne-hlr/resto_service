@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CardItemCarte from "../components/card_item_carte";
 import { InputGroup, Row, Col, FormControl, Button } from "react-bootstrap";
 
@@ -54,6 +54,7 @@ function Carte() {
 
   const [indexSelection, setIndexSelection] = useState(-1);
 
+  console.log(listTitle);
   const cardFormAppearance = () => {
     setIndexSelection(-1);
     console.log(indexSelection);
@@ -75,8 +76,21 @@ function Carte() {
     setDisplay("d-none");
     if (indexSelection < 0) {
       console.log(indexSelection);
+      setListTitle([...listTitle, { image: image, title: title }]);
     } else {
+      const newList = listTitle.map((value, index) => {
+        if (indexSelection == index) {
+          value.image = image;
+          value.title = title;
+          return value;
+        } else {
+          return value;
+        }
+      });
+      setListTitle(newList);
     }
+    setTitle("");
+    setImgUrl("https://www.socialkitchen.fr/photos/logo-thefork.jpg");
     setIndexSelection(-1);
   };
 
