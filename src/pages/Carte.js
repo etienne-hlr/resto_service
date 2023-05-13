@@ -53,6 +53,7 @@ function Carte() {
   );
   const [indexSelection, setIndexSelection] = useState(-1);
 
+  //Modals appearance
   const cardFormAppearance = () => {
     setIndexSelection(-1);
     console.log(indexSelection);
@@ -61,6 +62,7 @@ function Carte() {
     setDisplay("d-block");
   };
 
+  //Get data element from the list to display it on modal when an item is selected
   const modifyAnItem = (index) => {
     setIndexSelection(index);
     setImgUrl(listTitle[index]["image"]);
@@ -72,9 +74,11 @@ function Carte() {
   const newItemCreation = (image, title) => {
     setOpacity("opacity-100");
     setDisplay("d-none");
+    //if its a new item create a new one :
     if (indexSelection < 0) {
       setListTitle([...listTitle, { image: image, title: title }]);
     } else {
+      //else modify the item that has been selected
       const newList = listTitle.map((value, index) => {
         if (indexSelection === index) {
           value.image = image;
@@ -86,6 +90,8 @@ function Carte() {
       });
       setListTitle(newList);
     }
+
+    // after modification reset the state to initial values
     setTitle("");
     setImgUrl("https://www.socialkitchen.fr/photos/logo-thefork.jpg");
     setIndexSelection(-1);
@@ -95,6 +101,7 @@ function Carte() {
     setTitle(input);
   };
 
+  //Function to close the modal/form with the cross up right
   const closeForm = () => {
     setOpacity("opacity-100");
     setDisplay("d-none");
@@ -103,6 +110,7 @@ function Carte() {
     setIndexSelection(-1);
   };
 
+  //Function to delete an items with the cross up right
   const deleteAnItem = (index) => {
     listTitle.splice(index, 1);
     setListTitle([...listTitle]);
