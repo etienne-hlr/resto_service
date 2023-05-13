@@ -1,5 +1,4 @@
 import { Card, Button, Form, CloseButton } from "react-bootstrap";
-//need to check sizes of image
 
 function CardItemCarte({
   image,
@@ -10,6 +9,7 @@ function CardItemCarte({
   cardType,
   crossClickEvent,
 }) {
+  //Create a card or a form modal depending if the props is set to card or form
   return cardType === "card" ? (
     <Card className="position-relative ">
       <CloseButton
