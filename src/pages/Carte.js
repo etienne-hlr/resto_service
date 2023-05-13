@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CardItemCarte from "../components/card_item_carte";
 import { InputGroup, Row, Col, FormControl, Button } from "react-bootstrap";
 
@@ -51,10 +51,8 @@ function Carte() {
   const [imgUrl, setImgUrl] = useState(
     "https://www.socialkitchen.fr/photos/logo-thefork.jpg"
   );
-
   const [indexSelection, setIndexSelection] = useState(-1);
 
-  console.log(listTitle);
   const cardFormAppearance = () => {
     setIndexSelection(-1);
     console.log(indexSelection);
@@ -75,11 +73,10 @@ function Carte() {
     setOpacity("opacity-100");
     setDisplay("d-none");
     if (indexSelection < 0) {
-      console.log(indexSelection);
       setListTitle([...listTitle, { image: image, title: title }]);
     } else {
       const newList = listTitle.map((value, index) => {
-        if (indexSelection == index) {
+        if (indexSelection === index) {
           value.image = image;
           value.title = title;
           return value;
@@ -101,6 +98,9 @@ function Carte() {
   const closeForm = () => {
     setOpacity("opacity-100");
     setDisplay("d-none");
+    setTitle("");
+    setImgUrl("https://www.socialkitchen.fr/photos/logo-thefork.jpg");
+    setIndexSelection(-1);
   };
 
   const deleteAnItem = (index) => {

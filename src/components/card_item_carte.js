@@ -9,7 +9,6 @@ function CardItemCarte({
   buttonChangeEvent,
   cardType,
   crossClickEvent,
-  index,
 }) {
   return cardType === "card" ? (
     <Card className="position-relative ">
@@ -47,8 +46,9 @@ function CardItemCarte({
           <Form.Control
             className="m-1"
             type="text"
-            placeholder={title}
+            placeholder="Titre de la boisson"
             onChange={(e) => buttonChangeEvent(e.target.value)}
+            value={title}
           />
           <Button className="m-1" onClick={buttonClickEvent} variant="primary">
             {buttonType}
