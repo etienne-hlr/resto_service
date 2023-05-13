@@ -47,7 +47,7 @@ function Carte() {
   ]);
   const [display, setDisplay] = useState("d-none");
   const [opacity, setOpacity] = useState("opacity-100");
-  const [title, setTitle] = useState("Titre de la boisson");
+  const [title, setTitle] = useState("");
   const [imgUrl, setImgUrl] = useState(
     "https://www.socialkitchen.fr/photos/logo-thefork.jpg"
   );
