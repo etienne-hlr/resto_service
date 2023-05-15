@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CardItemCarte from "../components/card_item_carte";
 import { InputGroup, Row, Col, FormControl, Button } from "react-bootstrap";
+import Profile from "../components/test_webcam";
 
 function Carte() {
   const [listTitle, setListTitle] = useState([
@@ -179,6 +180,7 @@ function Carte() {
           ))}
         </Row>
       </div>
+      <Profile />
     </div>
   );
 }
