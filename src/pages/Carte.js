@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import CardItemCarte from "../components/card_item_carte";
-import { InputGroup, Row, Col, FormControl, Button } from "react-bootstrap";
-import Profile from "../components/test_webcam";
+import {
+  InputGroup,
+  Row,
+  Col,
+  FormControl,
+  Button,
+  Modal,
+} from "react-bootstrap";
+import WebcamPicture from "../components/test_webcam";
 
 function Carte() {
   const [listTitle, setListTitle] = useState([
@@ -53,6 +60,7 @@ function Carte() {
     "https://www.socialkitchen.fr/photos/logo-thefork.jpg"
   );
   const [indexSelection, setIndexSelection] = useState(-1);
+  const [show, setShow] = useState(true);
 
   //Modals appearance
   const cardFormAppearance = () => {
@@ -180,7 +188,12 @@ function Carte() {
           ))}
         </Row>
       </div>
-      <Profile />
+      <Modal
+        show={show}
+        className="position-absolute top-50 start-50 translate-middle"
+      >
+        <WebcamPicture />
+      </Modal>
     </div>
   );
 }

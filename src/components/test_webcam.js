@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
+import { Card, Button, Form, CloseButton } from "react-bootstrap";
 
 // const WebcamComponent = () => <Webcam />;
 const videoConstraints = {
@@ -8,9 +9,9 @@ const videoConstraints = {
   facingMode: "user",
 };
 
-const Profile = () => {
+const WebcamPicture = () => {
   const [picture, setPicture] = useState("");
-  const webcamRef = React.useRef(null);
+  const webcamRef = useRef(null);
 
   const capture = () => {
     const pictureSrc = webcamRef.current.getScreenshot();
@@ -22,10 +23,10 @@ const Profile = () => {
       <div>
         {picture == "" ? (
           <Webcam
-            audio={false}
-            height={400}
-            ref={webcamRef}
             width={400}
+            height={400}
+            audio={false}
+            ref={webcamRef}
             screenshotFormat="image/jpeg"
             videoConstraints={videoConstraints}
           />
@@ -35,28 +36,28 @@ const Profile = () => {
       </div>
       <div>
         {picture != "" ? (
-          <button
+          <Button
             onClick={(e) => {
               e.preventDefault();
               setPicture("");
             }}
             className="btn btn-primary"
           >
-            Retake
-          </button>
+            Ré-essayer
+          </Button>
         ) : (
-          <button
+          <Button
             onClick={(e) => {
               e.preventDefault();
               capture();
             }}
             className="btn btn-danger"
           >
-            Capture
-          </button>
+            Capturer
+          </Button>
         )}
       </div>
     </div>
   );
 };
-export default Profile;
+export default WebcamPicture;
