@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import CardItemCarte from "../components/card_item_carte";
 import {
   InputGroup,
@@ -8,7 +8,7 @@ import {
   Button,
   Modal,
 } from "react-bootstrap";
-import WebcamPicture from "../components/test_webcam";
+import WebcamPicture from "../components/webcam";
 
 function Carte() {
   const [listTitle, setListTitle] = useState([
@@ -61,6 +61,27 @@ function Carte() {
   );
   const [indexSelection, setIndexSelection] = useState(-1);
   const [show, setShow] = useState(true);
+  const [modalWidth, setModalWidth] = useState();
+  const [modalHeight, setModalHeight] = useState();
+
+  const modalRef = useRef(null);
+
+  const modalDimension = useCallback(() => {
+    if (modalRef.current) {
+      setModalHeight(modalRef.current.offsetHeight);
+      setModalWidth(modalRef.current.offsetWidth);
+    }
+  }, []);
+
+  useEffect(() => {
+    setModalHeight(modalRef.current.offsetHeight);
+    setModalWidth(modalRef.current.offsetWidth);
+
+    window.addEventListener("resize", modalDimension);
+    return () => {
+      window.removeEventListener("resize", modalDimension);
+    };
+  });
 
   //Modals appearance
   const cardFormAppearance = () => {
@@ -192,7 +213,9 @@ function Carte() {
         show={show}
         className="position-absolute top-50 start-50 translate-middle"
       >
-        <WebcamPicture />
+        <div ref={modalRef}>
+          <WebcamPicture />
+        </div>
       </Modal>
     </div>
   );
