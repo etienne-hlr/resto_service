@@ -8,6 +8,7 @@ function CardItemCarte({
   buttonChangeEvent,
   cardType,
   crossClickEvent,
+  imgClick,
 }) {
   //Create a card or a form modal depending if the props is set to card or form
   return cardType === "card" ? (
@@ -41,6 +42,7 @@ function CardItemCarte({
           style={{ width: "100%", height: "40vh", objectFit: "cover" }}
           variant="top"
           src={image}
+          onClick={imgClick}
         />
         <Card.Body>
           <Form.Control

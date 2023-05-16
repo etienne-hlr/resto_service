@@ -60,24 +60,21 @@ function Carte() {
     "https://www.socialkitchen.fr/photos/logo-thefork.jpg"
   );
   const [indexSelection, setIndexSelection] = useState(-1);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const [modalWidth, setModalWidth] = useState();
-  const [modalHeight, setModalHeight] = useState();
 
   const modalRef = useRef(null);
 
   const modalDimension = () => {
     if (modalRef.current) {
-      setModalHeight(modalRef.current.offsetHeight);
       setModalWidth(modalRef.current.offsetWidth);
-      console.log(modalWidth);
     }
   };
 
   useEffect(() => {
-    setModalHeight(modalRef.current.offsetHeight);
-    setModalWidth(modalRef.current.offsetWidth);
-
+    if (modalRef.current) {
+      setModalWidth(modalRef.current.offsetWidth);
+    }
     window.addEventListener("resize", modalDimension);
     return () => {
       window.removeEventListener("resize", modalDimension);
@@ -147,6 +144,14 @@ function Carte() {
     setListTitle([...listTitle]);
   };
 
+  const imgClick = (show) => {
+    if (show) {
+      setShow(false);
+    } else {
+      setShow(true);
+    }
+  };
+
   return (
     <div className="position-relative">
       <div
@@ -162,6 +167,7 @@ function Carte() {
           buttonChangeEvent={changeTitle}
           cardType="form"
           crossClickEvent={closeForm}
+          imgClick={() => imgClick(show)}
         />
       </div>
       <div className={`  ${opacity} `}>
@@ -215,7 +221,7 @@ function Carte() {
         className="position-absolute top-50 start-50 translate-middle"
       >
         <div ref={modalRef}>
-          <WebcamPicture />
+          <WebcamPicture width={modalWidth} />
         </div>
       </Modal>
     </div>

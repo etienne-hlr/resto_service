@@ -3,15 +3,15 @@ import Webcam from "react-webcam";
 import { Card, Button, Form, CloseButton } from "react-bootstrap";
 
 // const WebcamComponent = () => <Webcam />;
-const videoConstraints = {
-  width: 400,
-  height: 400,
-  facingMode: "user",
-};
 
-const WebcamPicture = () => {
+const WebcamPicture = ({ width }) => {
   const [picture, setPicture] = useState("");
   const webcamRef = useRef(null);
+
+  const videoConstraints = {
+    width: width,
+    facingMode: "user",
+  };
 
   const capture = () => {
     const pictureSrc = webcamRef.current.getScreenshot();
@@ -23,8 +23,8 @@ const WebcamPicture = () => {
       <div>
         {picture == "" ? (
           <Webcam
-            width={400}
-            height={400}
+            className="rounded-top"
+            width={videoConstraints.width}
             audio={false}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
