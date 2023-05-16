@@ -66,12 +66,13 @@ function Carte() {
 
   const modalRef = useRef(null);
 
-  const modalDimension = useCallback(() => {
+  const modalDimension = () => {
     if (modalRef.current) {
       setModalHeight(modalRef.current.offsetHeight);
       setModalWidth(modalRef.current.offsetWidth);
+      console.log(modalWidth);
     }
-  }, []);
+  };
 
   useEffect(() => {
     setModalHeight(modalRef.current.offsetHeight);
