@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 
 // const WebcamComponent = () => <Webcam />;
 
-const WebcamPicture = ({ width }) => {
+const WebcamPicture = ({ width, setImageFromWebcam, title, setShow }) => {
   const [picture, setPicture] = useState("");
   const webcamRef = useRef(null);
 
@@ -49,6 +49,10 @@ const WebcamPicture = ({ width }) => {
             <Button
               onClick={(e) => {
                 e.preventDefault();
+                // console.log(WebcamPicture);
+                console.log("hello");
+                setImageFromWebcam(picture, title);
+                setShow();
               }}
               className="btn btn-primary"
             >
@@ -60,6 +64,7 @@ const WebcamPicture = ({ width }) => {
             <Button
               onClick={(e) => {
                 e.preventDefault();
+                setShow();
               }}
               className="btn btn-danger"
             >

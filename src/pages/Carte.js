@@ -221,7 +221,12 @@ function Carte() {
         className="position-absolute top-50 start-50 translate-middle"
       >
         <div ref={modalRef}>
-          <WebcamPicture width={modalWidth} />
+          <WebcamPicture
+            width={modalWidth}
+            setShow={() => imgClick(show)}
+            setImageFromWebcam={newItemCreation}
+            title={title}
+          />
         </div>
       </Modal>
     </div>
