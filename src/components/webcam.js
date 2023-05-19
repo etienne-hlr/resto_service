@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
-import { Card, Button, Form, CloseButton } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 // const WebcamComponent = () => <Webcam />;
 
@@ -21,7 +21,7 @@ const WebcamPicture = ({ width }) => {
   return (
     <div>
       <div>
-        {picture == "" ? (
+        {picture === "" ? (
           <Webcam
             className="rounded-top"
             width={videoConstraints.width}
@@ -31,30 +31,50 @@ const WebcamPicture = ({ width }) => {
             videoConstraints={videoConstraints}
           />
         ) : (
-          <img src={picture} />
+          <img src={picture} alt="camera" />
         )}
       </div>
       <div>
-        {picture != "" ? (
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setPicture("");
-            }}
-            className="btn btn-primary"
-          >
-            Ré-essayer
-          </Button>
+        {picture !== "" ? (
+          <div className="d-flex justify-content-between p-1">
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                setPicture("");
+              }}
+              className="btn btn-danger"
+            >
+              Ré-essayer
+            </Button>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+              className="btn btn-primary"
+            >
+              Enregistrer
+            </Button>
+          </div>
         ) : (
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              capture();
-            }}
-            className="btn btn-danger"
-          >
-            Capturer
-          </Button>
+          <div className="d-flex justify-content-between p-1">
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+              className="btn btn-danger"
+            >
+              Annuler
+            </Button>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                capture();
+              }}
+              className="btn btn-primary"
+            >
+              Capturer
+            </Button>
+          </div>
         )}
       </div>
     </div>
