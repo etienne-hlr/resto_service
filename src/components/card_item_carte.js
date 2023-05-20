@@ -38,14 +38,17 @@ function CardItemCarte({
           className="position-absolute top-0 end-0 m-2"
         />
         <div className="position-relative">
-          <div className="position-absolute top-50 start-50 translate-middle">
+          <div
+            className="position-absolute top-50 start-50 translate-middle"
+            style={{ pointerEvents: "none" }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="250"
               height="250"
               opacity="0.5"
               fill="gray"
-              class="bi bi-images"
+              className="bi bi-images"
               viewBox="0 0 16 16"
             >
               <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />

@@ -157,6 +157,7 @@ function Carte() {
       <div
         className={`position-absolute ${display} w-100 h-100`}
         style={{ zIndex: 2 }}
+        onClick={() => newItemCreation(imgUrl, title)}
       ></div>
 
       <div
