@@ -152,6 +152,33 @@ function Carte() {
     }
   };
 
+  const storeData = listTitle;
+  const filterListItems = (e) => {
+    let formatInput = e.target.value
+      .toLocaleLowerCase()
+      .replace(/\s+/g, "")
+      .replace("é", "e")
+      .replace("è", "e")
+      .replace("ê", "e");
+    let test = listTitle.filter((item, index) => {
+      let formatItem = item.title
+        .toLocaleLowerCase()
+        .replace(/\s+/g, "")
+        .replace("é", "e")
+        .replace("è", "e")
+        .replace("ê", "e")
+        .includes(formatInput);
+      return formatItem !== false;
+    });
+    if (test !== true && listTitle.length !== 0) {
+      setListTitle(test);
+      console.log(storeData);
+    } else {
+      setListTitle(storeData);
+      console.log(storeData);
+    }
+  };
+
   return (
     <div className="position-relative">
       <div
@@ -188,7 +215,11 @@ function Carte() {
             </Button>
           </div>
           <InputGroup style={{ width: "200px" }} className="h-25 ">
-            <FormControl type="search" placeholder="Rechercher" />
+            <FormControl
+              type="search"
+              onChange={(e) => filterListItems(e)}
+              placeholder="Rechercher"
+            />
             <InputGroup.Text>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
