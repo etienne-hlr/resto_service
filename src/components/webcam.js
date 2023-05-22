@@ -2,8 +2,6 @@ import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
 import { Button } from "react-bootstrap";
 
-// const WebcamComponent = () => <Webcam />;
-
 const WebcamPicture = ({ width, setImageFromWebcam, title, setShow }) => {
   const [picture, setPicture] = useState("");
   const webcamRef = useRef(null);
@@ -13,6 +11,7 @@ const WebcamPicture = ({ width, setImageFromWebcam, title, setShow }) => {
     facingMode: "user",
   };
 
+  //function to set the picture
   const capture = () => {
     const pictureSrc = webcamRef.current.getScreenshot();
     setPicture(pictureSrc);
@@ -49,8 +48,6 @@ const WebcamPicture = ({ width, setImageFromWebcam, title, setShow }) => {
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                // console.log(WebcamPicture);
-                console.log("hello");
                 setImageFromWebcam(picture, title);
                 setShow();
               }}
