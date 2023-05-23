@@ -152,7 +152,6 @@ function Carte() {
     }
   };
 
-  const storeData = listTitle;
   const filterListItems = (e) => {
     let formatInput = e.target.value
       .toLocaleLowerCase()
@@ -170,12 +169,8 @@ function Carte() {
         .includes(formatInput);
       return formatItem !== false;
     });
-    if (test !== true && listTitle.length !== 0) {
+    if (test.length > 0 || formatInput.length > 0) {
       setListTitle(test);
-      console.log(storeData);
-    } else {
-      setListTitle(storeData);
-      console.log(storeData);
     }
   };
 
