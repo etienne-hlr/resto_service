@@ -66,8 +66,10 @@ function Carte() {
 
   const modalRef = useRef(null);
   useEffect(() => {
-    setSecondList(listTitle);
-  }, [secondList]);
+    if (listTitle.length > secondList.length) {
+      setSecondList(listTitle);
+    }
+  }, [listTitle]);
 
   const modalDimension = () => {
     if (modalRef.current) {
