@@ -71,8 +71,11 @@ function Carte() {
 
   useEffect(() => {
     if (modalRef.current) {
-      setModalWidth(modalRef.current.offsetWidth);
+      modalDimension();
     }
+  });
+
+  useEffect(() => {
     window.addEventListener("resize", modalDimension);
     return () => {
       window.removeEventListener("resize", modalDimension);
