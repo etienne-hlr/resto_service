@@ -53,6 +53,7 @@ function Carte() {
       title: "Rhum",
     },
   ]);
+  const [secondList, setSecondList] = useState([]);
   const [display, setDisplay] = useState("d-none");
   const [opacity, setOpacity] = useState("opacity-100");
   const [title, setTitle] = useState("");
@@ -64,6 +65,9 @@ function Carte() {
   const [modalWidth, setModalWidth] = useState();
 
   const modalRef = useRef(null);
+  useEffect(() => {
+    setSecondList(listTitle);
+  }, [secondList]);
 
   const modalDimension = () => {
     if (modalRef.current) {
@@ -153,13 +157,14 @@ function Carte() {
   };
 
   const filterListItems = (e) => {
+    console.log(secondList);
     let formatInput = e.target.value
       .toLocaleLowerCase()
       .replace(/\s+/g, "")
       .replace("é", "e")
       .replace("è", "e")
       .replace("ê", "e");
-    let test = listTitle.filter((item, index) => {
+    let setFilter = secondList.filter((item, index) => {
       let formatItem = item.title
         .toLocaleLowerCase()
         .replace(/\s+/g, "")
@@ -169,8 +174,8 @@ function Carte() {
         .includes(formatInput);
       return formatItem !== false;
     });
-    if (test.length > 0 || formatInput.length > 0) {
-      setListTitle(test);
+    if (setFilter.length > 0 || formatInput.length > 0) {
+      setListTitle(setFilter);
     }
   };
 
