@@ -9,6 +9,7 @@ import {
   Modal,
 } from "react-bootstrap";
 import WebcamPicture from "../components/webcam";
+import FilterInput from "../components/filter_input";
 
 function Carte() {
   const [listTitle, setListTitle] = useState([
@@ -53,7 +54,6 @@ function Carte() {
       title: "Rhum",
     },
   ]);
-  const [secondList, setSecondList] = useState([]);
   const [display, setDisplay] = useState("d-none");
   const [opacity, setOpacity] = useState("opacity-100");
   const [title, setTitle] = useState("");
@@ -65,11 +65,10 @@ function Carte() {
   const [modalWidth, setModalWidth] = useState();
 
   const modalRef = useRef(null);
-  useEffect(() => {
-    if (listTitle.length > secondList.length) {
-      setSecondList(listTitle);
-    }
-  }, [listTitle]);
+
+  const filterSetTitle = (e) => {
+    setListTitle(e);
+  };
 
   const modalDimension = () => {
     if (modalRef.current) {
@@ -90,7 +89,6 @@ function Carte() {
   //Modals appearance
   const cardFormAppearance = () => {
     setIndexSelection(-1);
-    console.log(indexSelection);
 
     setOpacity("opacity-25");
     setDisplay("d-block");
@@ -158,29 +156,6 @@ function Carte() {
     }
   };
 
-  const filterListItems = (e) => {
-    console.log(secondList);
-    let formatInput = e.target.value
-      .toLocaleLowerCase()
-      .replace(/\s+/g, "")
-      .replace("é", "e")
-      .replace("è", "e")
-      .replace("ê", "e");
-    let setFilter = secondList.filter((item, index) => {
-      let formatItem = item.title
-        .toLocaleLowerCase()
-        .replace(/\s+/g, "")
-        .replace("é", "e")
-        .replace("è", "e")
-        .replace("ê", "e")
-        .includes(formatInput);
-      return formatItem !== false;
-    });
-    if (setFilter.length > 0 || formatInput.length > 0) {
-      setListTitle(setFilter);
-    }
-  };
-
   return (
     <div className="position-relative">
       <div
@@ -216,25 +191,12 @@ function Carte() {
               Ajouter à la carte
             </Button>
           </div>
-          <InputGroup style={{ width: "200px" }} className="h-25 ">
-            <FormControl
-              type="search"
-              onChange={(e) => filterListItems(e)}
-              placeholder="Rechercher"
+          <div>
+            <FilterInput
+              listElement={listTitle}
+              filterSetTitle={filterSetTitle}
             />
-            <InputGroup.Text>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                className="bi bi-search"
-                viewBox="0 0 16 16"
-              >
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-              </svg>
-            </InputGroup.Text>
-          </InputGroup>
+          </div>
         </div>
         <Row xs={1} sm={2} md={4} className="g-3 p-3">
           {listTitle.map((value, index) => (
