@@ -1,8 +1,7 @@
 import { InputGroup, FormControl } from "react-bootstrap";
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const filterListItems = (e, secondList, filterSetTitle) => {
-  console.log(secondList);
   let formatInput = e.target.value
     .toLocaleLowerCase()
     .replace(/\s+/g, "")
@@ -31,7 +30,7 @@ const FilterInput = ({ listElement, filterSetTitle }) => {
     if (listElement.length > secondList.length) {
       setSecondList(listElement);
     }
-  }, [listElement]);
+  }, [listElement, secondList]);
 
   return (
     <>

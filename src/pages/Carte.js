@@ -1,13 +1,6 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import CardItemCarte from "../components/card_item_carte";
-import {
-  InputGroup,
-  Row,
-  Col,
-  FormControl,
-  Button,
-  Modal,
-} from "react-bootstrap";
+import { Row, Col, Button, Modal } from "react-bootstrap";
 import WebcamPicture from "../components/webcam";
 import FilterInput from "../components/filter_input";
 
@@ -84,7 +77,7 @@ function Carte() {
     return () => {
       window.removeEventListener("resize", modalDimension);
     };
-  });
+  }, []);
 
   //Modals appearance
   const cardFormAppearance = () => {
