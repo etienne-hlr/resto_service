@@ -14,7 +14,7 @@ function NavBarHeader() {
             <Navbar.Brand>Dashboard</Navbar.Brand>
           </LinkContainer>
           <Nav className="me-auto">
-            <LinkContainer to="/home">
+            <LinkContainer to="/carte">
               <Nav.Link>La carte</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/commandes">
@@ -23,8 +23,6 @@ function NavBarHeader() {
           </Nav>
         </Container>
       </Navbar>
-
-      <Outlet />
     </>
   );
 }

@@ -4,6 +4,8 @@ import { Row, Col, Button, Modal } from "react-bootstrap";
 import WebcamPicture from "../components/webcam";
 import FilterInput from "../components/filter_input";
 import Data from "../data/data.json";
+import NavBarHeader from "../components/nav_bar_header";
+
 function Carte() {
   const [listTitle, setListTitle] = useState([]);
   const [display, setDisplay] = useState("d-none");
@@ -116,80 +118,82 @@ function Carte() {
   };
 
   return (
-    <div className="position-relative">
-      <div
-        className={`position-absolute ${display} w-100 h-100`}
-        style={{ zIndex: 2 }}
-        onClick={() => newItemCreation(imgUrl, title)}
-      ></div>
+    <>
+      <div className="position-relative">
+        <div
+          className={`position-absolute ${display} w-100 h-100`}
+          style={{ zIndex: 2 }}
+          onClick={() => newItemCreation(imgUrl, title)}
+        ></div>
 
-      <div
-        className={`position-absolute top-50 start-50 translate-middle ${display}`}
-        style={{ zIndex: 3 }}
-      >
-        <CardItemCarte
-          image={imgUrl}
-          title={title}
-          data="data"
-          buttonType="Enregistrer"
-          buttonClickEvent={() => newItemCreation(imgUrl, title)}
-          buttonChangeEvent={changeTitle}
-          cardType="form"
-          crossClickEvent={closeForm}
-          imgClick={() => imgClick(show)}
-        />
-      </div>
-      <div className={`  ${opacity} `}>
-        <div className="d-flex  justify-content-between m-auto p-3">
-          <div className="d-flex justify-content-center ">
-            <Button
-              onClick={() => {
-                cardFormAppearance();
-              }}
-            >
-              Ajouter à la carte
-            </Button>
-          </div>
-          <div>
-            <FilterInput
-              listElement={listTitle}
-              filterSetTitle={filterSetTitle}
-            />
-          </div>
-        </div>
-        <Row xs={1} sm={2} md={4} className="g-3 p-3">
-          {listTitle.map((value, index) => (
-            <Col key={index}>
-              <CardItemCarte
-                key={index}
-                image={value.image}
-                title={value.title}
-                data="data"
-                buttonType="Modifier"
-                cardType="card"
-                buttonClickEvent={() => modifyAnItem(index)}
-                crossClickEvent={() => {
-                  deleteAnItem(index);
-                }}
-              />
-            </Col>
-          ))}
-        </Row>
-      </div>
-      <Modal
-        show={show}
-        className="position-absolute top-50 start-50 translate-middle"
-      >
-        <div ref={modalRef}>
-          <WebcamPicture
-            width={modalWidth}
-            setShow={() => imgClick(show)}
-            setImageFromWebcam={newItemCreation}
+        <div
+          className={`position-absolute top-50 start-50 translate-middle ${display}`}
+          style={{ zIndex: 3 }}
+        >
+          <CardItemCarte
+            image={imgUrl}
             title={title}
+            data="data"
+            buttonType="Enregistrer"
+            buttonClickEvent={() => newItemCreation(imgUrl, title)}
+            buttonChangeEvent={changeTitle}
+            cardType="form"
+            crossClickEvent={closeForm}
+            imgClick={() => imgClick(show)}
           />
         </div>
-      </Modal>
-    </div>
+        <div className={`  ${opacity} `}>
+          <div className="d-flex  justify-content-between m-auto p-3">
+            <div className="d-flex justify-content-center ">
+              <Button
+                onClick={() => {
+                  cardFormAppearance();
+                }}
+              >
+                Ajouter à la carte
+              </Button>
+            </div>
+            <div>
+              <FilterInput
+                listElement={listTitle}
+                filterSetTitle={filterSetTitle}
+              />
+            </div>
+          </div>
+          <Row xs={1} sm={2} md={4} className="g-3 p-3">
+            {listTitle.map((value, index) => (
+              <Col key={index}>
+                <CardItemCarte
+                  key={index}
+                  image={value.image}
+                  title={value.title}
+                  data="data"
+                  buttonType="Modifier"
+                  cardType="card"
+                  buttonClickEvent={() => modifyAnItem(index)}
+                  crossClickEvent={() => {
+                    deleteAnItem(index);
+                  }}
+                />
+              </Col>
+            ))}
+          </Row>
+        </div>
+        <Modal
+          show={show}
+          className="position-absolute top-50 start-50 translate-middle"
+        >
+          <div ref={modalRef}>
+            <WebcamPicture
+              width={modalWidth}
+              setShow={() => imgClick(show)}
+              setImageFromWebcam={newItemCreation}
+              title={title}
+            />
+          </div>
+        </Modal>
+      </div>
+    </>
   );
 }
 
