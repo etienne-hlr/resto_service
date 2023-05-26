@@ -1,23 +1,62 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 function Signup() {
+  const validationSchema = yup.object({
+    name: yup
+      .string()
+      .required("Nom d'utilisateur manquant")
+      .min(3, "3 caractères mnimum")
+      .max(15, "15 caractères maximum"),
+    email: yup.string().required("Email manquant").email("Email invalide"),
+    password: yup
+      .string()
+      .required("Mot de passe manquant")
+      .min(6, "Le mot de passe doit faire au minimum 6 caractères"),
+  });
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const submit = handleSubmit((credentials) => {
+    console.log(credentials);
+  });
   return (
     <div className="d-flex justify-content-center p-5">
       <div className="w-15"></div>
       <div className="border rounded p-4 shadow">
         <h2>S'enregistrer</h2>
-        <Form>
-          <Form.Group className="mb-3" controlId="formUsername">
+        <Form onSubmit={submit}>
+          <Form.Group className="mb-3" controlId="SignupUserEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              className="shadow-sm"
+              type="name"
+              placeholder="Entrez votre adresse Mail"
+              {...register("email")}
+            />
+            <p style={{ color: "red" }}>{errors.email?.message}</p>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="Signupname">
             <Form.Label>Nom d'utilisateur</Form.Label>
             <Form.Control
               className="shadow-sm"
-              type="username"
+              type="name"
               placeholder="Entrez le nom d'utilisateur"
+              {...register("name")}
             />
+            <p style={{ color: "red" }}>{errors.name?.message}</p>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formPassword">
+          <Form.Group className="mb-3" controlId="SignupPassword">
             <Form.Label>Mot de passe</Form.Label>
             <Form.Control
               className="shadow-sm"
@@ -25,13 +64,15 @@ function Signup() {
               placeholder="Entrez un mot de passe"
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formPasswordValidation">
+          <Form.Group className="mb-3" controlId="SignupPasswordValidation">
             <Form.Label>Confirmez mot de passe</Form.Label>
             <Form.Control
               className="shadow-sm"
               type="password"
               placeholder="Entrez le mot de passe"
+              {...register("password")}
             />
+            <p style={{ color: "red" }}>{errors.password?.message}</p>
           </Form.Group>
           <Button variant="primary" type="submit">
             S'enregistrer
