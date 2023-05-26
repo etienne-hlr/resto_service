@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
+import Authentication from "./pages/Authentication";
 
 import { lazy } from "react";
 
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
         element: (
           <CommandList list={["coca", "ice tea", "dorelei", "spritz"]} />
         ),
+      },
+      {
+        path: "/admin",
+        element: <Authentication />,
       },
     ],
   },

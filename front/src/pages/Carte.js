@@ -4,7 +4,6 @@ import { Row, Col, Button, Modal } from "react-bootstrap";
 import WebcamPicture from "../components/webcam";
 import FilterInput from "../components/filter_input";
 import Data from "../data/data.json";
-import NavBarHeader from "../components/nav_bar_header";
 
 function Carte() {
   const [listTitle, setListTitle] = useState([]);
