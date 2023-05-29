@@ -16,6 +16,9 @@ function Signup() {
       .string()
       .required("Mot de passe manquant")
       .min(6, "Le mot de passe doit faire au minimum 6 caractères"),
+    passwordConfirmation: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "Mot de passe incorrect"),
   });
 
   const {
@@ -62,7 +65,9 @@ function Signup() {
               className="shadow-sm"
               type="password"
               placeholder="Entrez un mot de passe"
+              {...register("password")}
             />
+            <p style={{ color: "red" }}>{errors.password?.message}</p>
           </Form.Group>
           <Form.Group className="mb-3" controlId="SignupPasswordValidation">
             <Form.Label>Confirmez mot de passe</Form.Label>
@@ -70,9 +75,11 @@ function Signup() {
               className="shadow-sm"
               type="password"
               placeholder="Entrez le mot de passe"
-              {...register("password")}
+              {...register("passwordConfirmation")}
             />
-            <p style={{ color: "red" }}>{errors.password?.message}</p>
+            <p style={{ color: "red" }}>
+              {errors.passwordConfirmation?.message}
+            </p>
           </Form.Group>
           <Button variant="primary" type="submit">
             S'enregistrer
