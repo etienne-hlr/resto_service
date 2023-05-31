@@ -1,12 +1,12 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function Signup() {
+function Signin() {
   return (
     <div className="d-flex justify-content-center p-5">
       <div className="w-15"></div>
       <div className="border rounded p-4 shadow">
-        <h2>S'enregistrer</h2>
+        <h2>Se connecter</h2>
         <Form>
           <Form.Group className="mb-3" controlId="formUsername">
             <Form.Label>Nom d'utilisateur</Form.Label>
@@ -36,4 +36,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Signin;
