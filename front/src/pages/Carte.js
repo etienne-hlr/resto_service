@@ -89,6 +89,10 @@ function Carte() {
     setIndexSelection(-1);
   };
 
+  const setImageFromWebcam = (image) => {
+    setImgUrl(image);
+  };
+
   const changeTitle = (input) => {
     setTitle(input);
   };
@@ -186,7 +190,7 @@ function Carte() {
             <WebcamPicture
               width={modalWidth}
               setShow={() => imgClick(show)}
-              setImageFromWebcam={newItemCreation}
+              setImageFromWebcam={setImageFromWebcam}
               title={title}
             />
           </div>

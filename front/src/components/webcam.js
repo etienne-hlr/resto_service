@@ -48,7 +48,7 @@ const WebcamPicture = ({ width, setImageFromWebcam, title, setShow }) => {
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                setImageFromWebcam(picture, title);
+                setImageFromWebcam(picture);
                 setShow();
               }}
               className="btn btn-primary"
