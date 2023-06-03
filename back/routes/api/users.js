@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const UserModel = require("../../database/models/user_model");
 
-router.post("/", async (req, res) => {
+router.post("/user", async (req, res) => {
   const body = req.body;
   const newUser = new UserModel(body);
   newUser.save((err, user) => {
