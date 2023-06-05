@@ -23,6 +23,7 @@ function Carte() {
     setListTitle(e);
   };
 
+  //set the modal width
   const modalDimension = () => {
     if (modalRef.current) {
       setModalWidth(modalRef.current.offsetWidth);
@@ -33,12 +34,14 @@ function Carte() {
     setListTitle(Data.data);
   }, []);
 
+  //set the modal width when its set
   useEffect(() => {
     if (modalRef.current) {
       modalDimension();
     }
   });
 
+  //change modal webcam size when there is an event resize on the window
   useEffect(() => {
     window.addEventListener("resize", modalDimension);
     return () => {
@@ -89,6 +92,7 @@ function Carte() {
     setIndexSelection(-1);
   };
 
+  //set Image from webcam to the modal
   const setImageFromWebcam = (image) => {
     setImgUrl(image);
   };
