@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const validationSchema = yup.object({
@@ -30,9 +30,10 @@ function Signup() {
     resolver: yupResolver(validationSchema),
   });
 
+  const navigate = useNavigate();
   const submit = handleSubmit((credentials) => {
     console.log(credentials);
-    return <Navigate to="/Signin" />;
+    navigate("/Signin");
   });
 
   return (
