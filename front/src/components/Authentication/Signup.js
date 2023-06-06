@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Navigate } from "react-router-dom";
 
 function Signup() {
   const validationSchema = yup.object({
@@ -31,7 +32,9 @@ function Signup() {
 
   const submit = handleSubmit((credentials) => {
     console.log(credentials);
+    return <Navigate to="/Signin" />;
   });
+
   return (
     <div className="d-flex justify-content-center p-5">
       <div className="w-15"></div>
