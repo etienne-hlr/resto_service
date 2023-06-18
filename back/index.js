@@ -7,6 +7,8 @@ const router = require("./routes");
 app.use(cookie());
 app.use(express.json());
 
+require("./database");
+
 app.use(router);
 
 app.use("*", (req, res) => {
