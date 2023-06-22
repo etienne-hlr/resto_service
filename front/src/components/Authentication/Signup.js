@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
+import createUser from "../../api/createUser";
 
 function Signup() {
   const validationSchema = yup.object({
@@ -30,10 +31,11 @@ function Signup() {
     resolver: yupResolver(validationSchema),
   });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const submit = handleSubmit((credentials) => {
     console.log(credentials);
-    navigate("/Signin");
+    createUser(credentials);
+    // navigate("/Signin");
   });
 
   return (
