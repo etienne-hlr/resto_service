@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import Authentication from "./pages/Authentication";
+import Signup from "./pages/Authentication/Signup";
+import Signin from "./pages/Authentication/Signin";
 
 import { lazy } from "react";
 
@@ -27,8 +28,12 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/admin",
-        element: <Authentication />,
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/signin",
+        element: <Signin />,
       },
     ],
   },
