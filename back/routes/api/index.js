@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const apiUsers = require("./users");
+const apiSignup = require("./signup");
 
-router.use("/users", apiUsers);
+router.use("/signup", apiSignup);
 
 module.exports = router;
