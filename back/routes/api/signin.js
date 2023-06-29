@@ -2,6 +2,7 @@ const UserModel = require("../../database/models/user_model");
 const bcrypt = require("bcrypt");
 const router = require("express").Router();
 const jsonwebtoken = require("jsonwebtoken");
+const { key } = require("../../keys");
 
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
@@ -12,12 +13,14 @@ router.post("/", async (req, res) => {
         const token = jsonwebtoken.sign({}, key, {
           subject: user._id.toString(),
           expiresIn: "10m",
+          algorithm: "RS256",
         });
-        res.cookie("token", token);
+        res.cookie("token", token, { httpOnly: true });
         res.json(user);
       }
     }
   } catch (error) {
+    console.log(error);
     res.status(400).json("mauvaise email ou mot de passe");
   }
 });
