@@ -17,6 +17,8 @@ router.post("/", async (req, res) => {
         });
         res.cookie("token", token, { httpOnly: true });
         res.json(user);
+      } else {
+        res.status(404).json("Utilisateur ou mdp incorrect");
       }
     }
   } catch (error) {
