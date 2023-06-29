@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import createUser from "../../api/authentication/signup";
+import signInUser from "../../api/authentication/signin";
 
 function Signin() {
   const validationSchema = yup.object({
@@ -23,8 +23,13 @@ function Signin() {
     resolver: yupResolver(validationSchema),
   });
 
-  const submit = handleSubmit((credentials) => {
-    console.log(credentials);
+  const submit = handleSubmit(async (credentials) => {
+    try {
+      const response = await signInUser(credentials);
+      // console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   return (
@@ -41,6 +46,7 @@ function Signin() {
               placeholder="Entrez le nom d'utilisateur"
               {...register("email")}
             />
+            <p style={{ color: "red" }}>{errors.email?.message}</p>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="SignInUserPassword">
@@ -51,6 +57,7 @@ function Signin() {
               placeholder="Entrez un mot de passe"
               {...register("password")}
             />
+            <p style={{ color: "red" }}>{errors.password?.message}</p>
           </Form.Group>
 
           <Button variant="primary" type="submit">
