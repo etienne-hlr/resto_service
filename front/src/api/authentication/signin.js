@@ -6,7 +6,6 @@ const signin = async (loginUser) => {
       email: loginUser.email,
       password: loginUser.password,
     });
-    console.log(response);
   } catch (error) {
     console.log(error);
   }
