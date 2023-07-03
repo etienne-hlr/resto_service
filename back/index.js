@@ -3,7 +3,12 @@ const cookie = require("cookie-parser");
 const app = express();
 let cors = require("cors");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 const router = require("./routes");
 

@@ -12,10 +12,14 @@ router.post("/", async (req, res) => {
       if (bcrypt.compareSync(password, user.password)) {
         const token = jsonwebtoken.sign({}, key, {
           subject: user._id.toString(),
-          expiresIn: "10m",
+          expiresIn: 3600 * 24 * 30 * 6,
           algorithm: "RS256",
         });
-        res.cookie("token", token, { httpOnly: true });
+        res.cookie("token", token, {
+          httpOnly: true,
+          sameSite: "none",
+          secure: "false",
+        });
         res.json(user);
       } else {
         res.status(404).json("Utilisateur ou mdp incorrect");
