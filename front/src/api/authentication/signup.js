@@ -8,7 +8,6 @@ const signup = async (newUser) => {
       password: newUser.password,
     });
   } catch (error) {
-    console.log(error);
     return error;
   }
 };

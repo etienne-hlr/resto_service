@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import signInUser from "../../api/authentication/signin";
+import signIn from "../../api/authentication/signin";
 
 function Signin() {
   const validationSchema = yup.object({
@@ -28,11 +28,13 @@ function Signin() {
   const submit = handleSubmit(async (credentials) => {
     try {
       clearErrors();
-      const response = await signInUser(credentials);
+      const response = await signIn(credentials);
       console.log(response);
     } catch (error) {
-      setError("generic", { type: "generic", error });
-      console.log(error);
+      setError("loginFail", {
+        type: "custom",
+        message: "Wrong email or password",
+      });
     }
   });
 
@@ -61,10 +63,8 @@ function Signin() {
               {...register("password")}
             />
           </Form.Group>
-          {errors.generic && (
-            <div className="mb-10">
-              <p className="form-error">{errors.generic.message}</p>
-            </div>
+          {errors.loginFail && (
+            <p style={{ color: "red" }}>{errors.loginFail.message}</p>
           )}
           <Button variant="primary" type="submit">
             Se Connecter
