@@ -19,15 +19,19 @@ function Signin() {
     handleSubmit,
     register,
     formState: { errors },
+    setError,
+    clearErrors,
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
 
   const submit = handleSubmit(async (credentials) => {
     try {
+      clearErrors();
       const response = await signInUser(credentials);
-      // console.log(response);
+      console.log(response);
     } catch (error) {
+      setError("generic", { type: "generic", error });
       console.log(error);
     }
   });
@@ -46,7 +50,6 @@ function Signin() {
               placeholder="Entrez le nom d'utilisateur"
               {...register("email")}
             />
-            <p style={{ color: "red" }}>{errors.email?.message}</p>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="SignInUserPassword">
@@ -57,9 +60,12 @@ function Signin() {
               placeholder="Entrez un mot de passe"
               {...register("password")}
             />
-            <p style={{ color: "red" }}>{errors.password?.message}</p>
           </Form.Group>
-
+          {errors.generic && (
+            <div className="mb-10">
+              <p className="form-error">{errors.generic.message}</p>
+            </div>
+          )}
           <Button variant="primary" type="submit">
             Se Connecter
           </Button>
