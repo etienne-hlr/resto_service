@@ -25,11 +25,15 @@ function Signin() {
     resolver: yupResolver(validationSchema),
   });
 
+  const navigate = useNavigate();
+
   const submit = handleSubmit(async (credentials) => {
     try {
       clearErrors();
       const response = await signIn(credentials);
-      console.log(response);
+      if (response.status === 200) {
+        navigate("/");
+      }
     } catch (error) {
       setError("loginFail", {
         type: "custom",

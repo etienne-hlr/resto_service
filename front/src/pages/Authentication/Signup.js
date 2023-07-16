@@ -32,6 +32,7 @@ function Signup() {
   });
 
   const navigate = useNavigate();
+
   const submit = handleSubmit(async (credentials) => {
     try {
       const response = await createUser(credentials);
@@ -39,6 +40,7 @@ function Signup() {
         console.log(response);
       } else {
         navigate("/signin");
+        console.log(response);
       }
     } catch (error) {
       console.log(error);
